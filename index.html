@@ -270,6 +270,24 @@
     transform: rotate(-45deg) scale(1) !important;
   }
 }
+/* PRINT AGREEMENT FIX */
+.print-agreed {
+  display: none;
+  font-size: 14px;
+  margin-top: 12px;
+  color: #000;
+}
+
+/* Print-specific rules */
+@media print {
+  .acceptance-box {
+    display: none; /* hide interactive checkbox */
+  }
+
+  .print-agreed {
+    display: block; /* show agreed text */
+  }
+}
 
   </style>
 </head>
@@ -447,6 +465,9 @@ and the Privacy Policy.
     <span class="checkmark"></span>
     I agree to the Terms & Conditions and Privacy Policy.
   </label>
+</div>
+<div class="print-agreed">
+  ✔ I agree to the Terms & Conditions and Privacy Policy.
 </div>
 
 
