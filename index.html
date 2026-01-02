@@ -265,10 +265,15 @@
     background: #000 !important;
     border-color: #000 !important;
   }
-
+#nameGate {
+  display: none !important;
+}
   .custom-checkbox:checked + .checkmark::after {
     transform: rotate(-45deg) scale(1) !important;
   }
+}
+    .print-signature {
+  margin-top: 30px;
 }
 /* PRINT AGREEMENT FIX */
 .print-agreed {
@@ -341,6 +346,53 @@
 </head>
 
 <body>
+  
+<!-- NAME GATE OVERLAY -->
+<div id="nameGate" style="
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+">
+  <div style="
+    max-width: 420px;
+    width: 100%;
+    padding: 32px;
+    border: 1px solid #e5e5e5;
+  ">
+    <h2 style="margin-bottom: 10px;">Enter Your Full Name</h2>
+    <p style="font-size:14px; color:#555; margin-bottom:16px;">
+      This name will appear on the signed PDF.
+    </p>
+
+    <input
+      type="text"
+      id="fullNameInput"
+      placeholder="Your Full Name"
+      style="
+        width:100%;
+        padding:12px;
+        font-size:15px;
+        margin-bottom:16px;
+        border:1px solid #ccc;
+      "
+    />
+
+    <button onclick="saveName()" style="
+      width:100%;
+      padding:12px;
+      background:#000;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+    ">
+      Continue
+    </button>
+  </div>
+</div>
 
 <div class="container">
 
@@ -532,6 +584,11 @@ and the Privacy Policy.
   </button>
 </div>
 
+<div class="print-signature keep-together" style="margin-top:40px;">
+  <p><strong>Agreed & Signed by:</strong></p>
+  <p id="signedName" style="margin-top:6px;"></p>
+  <p style="font-size:13px; color:#555;">Date: <span id="signedDate"></span></p>
+</div>
 
     <p class="footer">
       <strong>© 2026 Anti9five</strong> — All rights reserved.
@@ -541,6 +598,49 @@ and the Privacy Policy.
   
 
  <script>
+  /* =========================
+     NAME GATE + SIGNATURE
+  ========================== */
+
+  const nameGate = document.getElementById("nameGate");
+  const fullNameInput = document.getElementById("fullNameInput");
+  const signedName = document.getElementById("signedName");
+  const signedDate = document.getElementById("signedDate");
+
+  function saveName() {
+
+  // 🔒 Lock check (ADD THIS AT TOP)
+  if (sessionStorage.getItem("anti9five_locked")) {
+    alert("Name is locked after agreement.");
+    return;
+  }
+
+  const name = fullNameInput.value.trim();
+
+  if (!name) {
+    alert("Please enter your full name");
+    return;
+  }
+
+  sessionStorage.setItem("anti9five_fullname", name);
+  nameGate.style.display = "none";
+  loadSignature();
+}
+
+  function loadSignature() {
+    const storedName = sessionStorage.getItem("anti9five_fullname");
+    if (!storedName) {
+      nameGate.style.display = "flex";
+      return;
+    }
+    signedName.textContent = storedName;
+    signedDate.textContent = new Date().toLocaleDateString();
+  }
+
+  /* =========================
+     PDF DOWNLOAD
+  ========================== */
+
   function downloadPDF() {
     const originalTitle = document.title;
     document.title = "ANTI9five-Terms-2026";
@@ -548,20 +648,33 @@ and the Privacy Policy.
     document.title = originalTitle;
   }
 
+  /* =========================
+     ACCEPT TERMS → ENABLE PDF
+  ========================== */
+
   const acceptBox = document.getElementById("acceptTerms");
   const pdfBtn = document.getElementById("pdfBtn");
 
   acceptBox.addEventListener("change", () => {
     pdfBtn.disabled = !acceptBox.checked;
+     if (acceptBox.checked) {
+    sessionStorage.setItem("anti9five_locked", "true");
+  }
   });
 
-  // Always load page at top on refresh
+  /* =========================
+     PAGE LOAD BEHAVIOR
+  ========================== */
+
   window.addEventListener("load", () => {
+    loadSignature();
+
     if (window.location.hash) {
       history.replaceState(null, "", window.location.pathname);
       window.scrollTo(0, 0);
     }
   });
 </script>
+
 </body>
 </html>
