@@ -258,6 +258,19 @@
         font-size: 28px;
       }
     }
+
+    /* PRINT – force checkbox tick visible */
+@media print {
+  .custom-checkbox:checked + .checkmark {
+    background: #000 !important;
+    border-color: #000 !important;
+  }
+
+  .custom-checkbox:checked + .checkmark::after {
+    transform: rotate(-45deg) scale(1) !important;
+  }
+}
+
   </style>
 </head>
 
@@ -280,9 +293,6 @@
     </div>
   </div>
 
-
-    
-</div>
     <h2>1. Scope of Work</h2>
     <p>
       ANTI9five provides website development, lead systems, automation, and basic CRM setup only.
