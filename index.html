@@ -230,6 +230,105 @@
     .footer strong {
       color: #111;
     }
+/* ===============================
+   NAME GATE – PREMIUM UX
+================================ */
+
+#nameGate {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.name-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 36px 32px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: slideUp 0.4s ease;
+}
+
+.name-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #111;
+}
+
+.name-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 22px;
+}
+
+.name-card input {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.name-card input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+
+.name-card button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.name-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
+.name-note {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .name-card {
+    margin: 0 16px;
+    padding: 28px 22px;
+  }
+}
 
     /* PRINT */
     @media print {
@@ -348,51 +447,25 @@
 <body>
   
 <!-- NAME GATE OVERLAY -->
-<div id="nameGate" style="
-  position: fixed;
-  inset: 0;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-">
-  <div style="
-    max-width: 420px;
-    width: 100%;
-    padding: 32px;
-    border: 1px solid #e5e5e5;
-  ">
-    <h2 style="margin-bottom: 10px;">Enter Your Full Name</h2>
-    <p style="font-size:14px; color:#555; margin-bottom:16px;">
-      This name will appear on the signed PDF.
-    </p>
+<div id="nameGate">
+  <div class="name-card">
+    <h2>Enter your full name</h2>
+    <p>This name will appear on the signed PDF.</p>
 
     <input
       type="text"
       id="fullNameInput"
-      placeholder="Your Full Name"
-      style="
-        width:100%;
-        padding:12px;
-        font-size:15px;
-        margin-bottom:16px;
-        border:1px solid #ccc;
-      "
+      placeholder="Full legal name"
     />
 
-    <button onclick="saveName()" style="
-      width:100%;
-      padding:12px;
-      background:#000;
-      color:#fff;
-      border:none;
-      cursor:pointer;
-    ">
-      Continue
-    </button>
+    <button onclick="saveName()">Continue</button>
+
+    <small class="name-note">
+      By continuing, you confirm this name is accurate.
+    </small>
   </div>
 </div>
+
 
 <div class="container">
 
@@ -641,12 +714,18 @@ and the Privacy Policy.
      PDF DOWNLOAD
   ========================== */
 
-  function downloadPDF() {
-    const originalTitle = document.title;
-    document.title = "ANTI9five-Terms-2026";
-    window.print();
-    document.title = originalTitle;
+ function downloadPDF() {
+  if (!sessionStorage.getItem("anti9five_fullname")) {
+    alert("Please enter your full name before downloading.");
+    return;
   }
+
+  const originalTitle = document.title;
+  document.title = "ANTI9five-Terms-2026";
+  window.print();
+  document.title = originalTitle;
+}
+
 
   /* =========================
      ACCEPT TERMS → ENABLE PDF
