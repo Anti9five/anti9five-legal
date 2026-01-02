@@ -455,7 +455,7 @@
     <input
       type="text"
       id="fullNameInput"
-      placeholder="Full legal name"
+      placeholder="Full name"
     />
 
     <button onclick="saveName()">Continue</button>
@@ -681,13 +681,6 @@ and the Privacy Policy.
   const signedDate = document.getElementById("signedDate");
 
   function saveName() {
-
-  // 🔒 Lock check (ADD THIS AT TOP)
-  if (sessionStorage.getItem("anti9five_locked")) {
-    alert("Name is locked after agreement.");
-    return;
-  }
-
   const name = fullNameInput.value.trim();
 
   if (!name) {
@@ -697,8 +690,14 @@ and the Privacy Policy.
 
   sessionStorage.setItem("anti9five_fullname", name);
   nameGate.style.display = "none";
+
+  document.getElementById("terms").scrollIntoView({
+    behavior: "smooth"
+  });
+
   loadSignature();
 }
+
 
   function loadSignature() {
     const storedName = sessionStorage.getItem("anti9five_fullname");
@@ -736,9 +735,7 @@ and the Privacy Policy.
 
   acceptBox.addEventListener("change", () => {
     pdfBtn.disabled = !acceptBox.checked;
-     if (acceptBox.checked) {
-    sessionStorage.setItem("anti9five_locked", "true");
-  }
+  
   });
 
   /* =========================
