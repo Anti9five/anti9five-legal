@@ -279,15 +279,63 @@
 }
 
 /* Print-specific rules */
+/*============================
+   PRINT / PDF FIXES
+================================ */
 @media print {
+
+  /* Page setup */
+  @page {
+    margin: 20mm;
+  }
+
+  /* Avoid breaking headings */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Avoid breaking content blocks */
+  p, li, ul, ol,
+  section, .section, .content-block,
+  .keep-together,
+  .highlight,
+  footer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Heading spacing control */
+  h2 {
+    margin-top: 24px;
+  }
+
+  /* Checkbox → print agreement */
   .acceptance-box {
-    display: none; /* hide interactive checkbox */
+    display: none;
   }
 
   .print-agreed {
-    display: block; /* show agreed text */
+    display: block;
+  }
+
+  /* Manual page breaks */
+  .page-break {
+    page-break-before: always;
+    break-before: always;
+  }
+
+  /* Footer safety */
+  footer {
+    position: relative;
+  }
+
+  /* Remove unwanted elements */
+  .no-print {
+    display: none !important;
   }
 }
+
 
   </style>
 </head>
@@ -343,13 +391,14 @@
       or upgrades are paid directly by the client.
       Recurring subscription costs are not included in setup fees.
     </p>
-
+<div class="keep-together">
     <h2>6. Advance Payment Policy</h2>
     <p>
       A non-refundable advance payment of <strong>31% of the total project cost</strong>
       is required before project initiation.
       Work will begin only after the advance payment is received.
-    </p>
+    </p> 
+  </div>
 <div class="highlight">
   A non-refundable advance payment of <strong>31%</strong> is mandatory before project initiation.
 </div>
@@ -370,20 +419,23 @@
     <p>
       System performance depends on consistent and correct usage by the client.
     </p>
-
+<div class="keep-together">
     <h2>9. Timelines & Delays</h2>
     <p>
       Project timelines depend on timely inputs and approvals from the client.
       Delays in response may extend the delivery timeline.
     </p>
-
+</div>
+  <div class="keep-together">
     <h2>10. Payment & Support Policy</h2>
     <p>
       Final payment must be completed before project handover or go-live.
       Post-delivery support includes basic guidance only.
       Ongoing maintenance or changes require a separate support plan.
     </p>
+  </div>
 <div class="divider"></div>
+<div class="page-break"></div>
 
 <h1 id="privacy">Privacy Policy</h1>
 
