@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms & Conditions | ANTI9five</title>
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* BASE */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+    }
+html {
+  scroll-behavior: smooth;
+}
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 40px 0 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #333;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 22px;
+    }
+
+    li {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    li::marker {
+      color: #000;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s ease;
+      color: #444;
+    }
+
+    /* SWITCH */
+    .switch {
+      position: relative;
+      width: 46px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #ccc;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    input:checked + .slider {
+      background: #000;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(22px);
+    }
+
+    /* HIGHLIGHT */
+    .highlight {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: #f5f5f5;
+      border-left: 4px solid #000;
+      color: #111;
+    }
+/* Wrapper */
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* Hide default checkbox */
+.custom-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Custom circle */
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+/* Tick */
+.checkmark::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 32px;
+}
+
+@media (max-width: 600px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* Checked state */
+.custom-checkbox:checked + .checkmark {
+  background: #000;
+  border-color: #000;
+}
+
+.custom-checkbox:checked + .checkmark::after {
+  transform: rotate(-45deg) scale(1);
+}
+
+/* Dark mode */
+body.dark .checkmark {
+  border-color: #ccc;
+}
+
+body.dark .custom-checkbox:checked + .checkmark {
+  background: #fff;
+  border-color: #fff;
+}
+
+body.dark .custom-checkbox:checked + .checkmark::after {
+  border-color: #000;
+}
+
+    /* DIVIDER */
+    .divider {
+      margin: 32px 0;
+      height: 1px;
+      background: #e5e5e5;
+    }
+
+    /* ACCEPTANCE */
+    .acceptance {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #444;
+    }
+.acceptance-box {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #444;
+}
+
+.acceptance-box label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Dark mode */
+body.dark .acceptance-box {
+  color: #ccc;
+}
+.policy-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 28px;
+  font-size: 14px;
+}
+
+/* Links */
+.policy-nav a {
+  position: relative;
+  text-decoration: none;
+  font-weight: 500;
+  color: #222;
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+
+/* Underline animation */
+.policy-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #000;
+  transition: width 0.25s ease;
+}
+
+/* Hover */
+.policy-nav a:hover {
+  color: #000;
+}
+
+.policy-nav a:hover::after {
+  width: 100%;
+}
+
+/* Separator dot */
+.policy-nav span {
+  color: #aaa;
+  font-size: 12px;
+}
+
+/* Dark mode */
+body.dark .policy-nav a {
+  color: #eaeaea;
+}
+
+body.dark .policy-nav a::after {
+  background: #fff;
+}
+
+body.dark .policy-nav span {
+  color: #666;
+}
+
+
+/* Dark mode */
+body.dark .policy-nav a {
+  color: #fff;
+}
+
+body.dark .policy-nav span {
+  color: #666;
+}
+
+    /* PDF */
+    .pdf-download {
+      margin-top: 28px;
+    }
+
+    .pdf-download button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .pdf-download button:hover {
+      opacity: 0.85;
+    }
+.pdf-download button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+    /* FOOTER */
+    .footer {
+      margin-top: 50px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .footer strong {
+      color: #111;
+    }
+
+    /* DARK MODE */
+    body.dark {
+      background: #111;
+      color: #eaeaea;
+    }
+
+    body.dark h1,
+    body.dark h2 {
+      color: #fff;
+    }
+
+    body.dark p,
+    body.dark li {
+      color: #ccc;
+    }
+
+    body.dark .toggle-label {
+      color: #eaeaea;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(255,255,255,0.15);
+    }
+
+    body.dark .highlight {
+      background: #1e1e1e;
+      border-left: 4px solid #fff;
+      color: #eaeaea;
+    }
+
+    body.dark .divider {
+      background: #333;
+    }
+
+    body.dark .pdf-download button {
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+    }
+.footer {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 16px;
+  text-align: center;
+}
+
+body.dark .footer {
+  border-top: 1px solid #333;
+}
+
+body.dark .footer strong {
+  color: #fff;
+}
+
+    /* PRINT */
+    @media print {
+      @page {
+        size: A4;
+        margin: 25mm 20mm;
+      }
+
+      .pdf-download {
+        display: none;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 16px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .theme-toggle {
+        justify-content: flex-start;
+      }
+
+      .pdf-download button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+   <h1 id="terms">Terms & Conditions</h1>
+
+
+    <p class="subtitle">
+      Please read these terms carefully before proceeding with ANTI9five services.<br>
+      <small>Last updated: 2 Jan 2026</small>
+    </p>
+    <div class="top-bar">
+<div class="policy-nav">
+  <a href="#terms">Terms & Conditions</a>
+  <span>•</span>
+  <a href="#privacy">Privacy Policy</a>
+</div>
+
+    <div class="theme-toggle">
+      <span class="toggle-label" id="themeLabel">Dark mode</span>
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+</div>
+    <h2>1. Scope of Work</h2>
+    <p>
+      ANTI9five provides website development, lead systems, automation, and basic CRM setup only.
+      Mobile applications, custom software, ERP systems, or large-scale platforms are not included
+      unless explicitly agreed in writing.
+    </p>
+
+    <h2>2. Project Understanding</h2>
+    <p>
+      All work is carried out strictly based on the scope agreed during onboarding.
+      Any request outside the agreed scope will be treated as additional work and may involve extra charges.
+    </p>
+
+    <h2>3. No Guaranteed Leads or Revenue</h2>
+    <p>
+      ANTI9five does not guarantee leads, sales, or revenue.
+      We guarantee only the proper setup of systems to capture, respond to, and manage leads efficiently.
+    </p>
+
+    <h2>4. Advertising & Marketing</h2>
+    <p>
+      Paid advertisements (Meta, Google, etc.) are not included by default.
+      Advertising services, if required, are handled separately or via partners.
+      Ad spend is always paid directly by the client.
+    </p>
+
+    <h2>5. Tools & Platform Costs</h2>
+    <p>
+      All third-party tools such as domains, hosting, WhatsApp API, CRM subscriptions,
+      or upgrades are paid directly by the client.
+      Recurring subscription costs are not included in setup fees.
+    </p>
+
+    <h2>6. Advance Payment Policy</h2>
+    <p>
+      A non-refundable advance payment of <strong>31% of the total project cost</strong>
+      is required before project initiation.
+      Work will begin only after the advance payment is received.
+    </p>
+<div class="highlight">
+  A non-refundable advance payment of <strong>31%</strong> is mandatory before project initiation.
+</div>
+
+    <h2>7. WhatsApp Automation Limitation</h2>
+    <p>
+      Automation using the WhatsApp Business App has functional limitations.
+      Advanced automation requires WhatsApp API integration and may involve additional
+      setup and message charges paid by the client.
+    </p>
+
+    <h2>8. Client Responsibilities</h2>
+    <ul>
+      <li>Providing accurate business information</li>
+      <li>Giving timely approvals and feedback</li>
+      <li>Managing and responding to leads</li>
+    </ul>
+    <p>
+      System performance depends on consistent and correct usage by the client.
+    </p>
+
+    <h2>9. Timelines & Delays</h2>
+    <p>
+      Project timelines depend on timely inputs and approvals from the client.
+      Delays in response may extend the delivery timeline.
+    </p>
+
+    <h2>10. Payment & Support Policy</h2>
+    <p>
+      Final payment must be completed before project handover or go-live.
+      Post-delivery support includes basic guidance only.
+      Ongoing maintenance or changes require a separate support plan.
+    </p>
+<div class="divider"></div>
+
+<h1 id="privacy">Privacy Policy</h1>
+
+
+<p class="subtitle">
+This Privacy Policy explains how ANTI9five collects, uses, and protects your information.
+</p>
+
+<h2>1. Information We Collect</h2>
+<p>
+We may collect basic information such as your name, phone number, email address,
+business details, and any information you voluntarily share via forms, WhatsApp, or email.
+We do not collect sensitive personal data.
+</p>
+
+<h2>2. How We Use Your Information</h2>
+<p>
+Your information is used only to respond to inquiries, provide services,
+communicate about projects, and improve internal processes.
+We do not sell or misuse your data.
+</p>
+
+<h2>3. Data Sharing</h2>
+<p>
+ANTI9five does not sell, rent, or trade your personal information.
+Data may be shared only with trusted third-party tools strictly for service delivery.
+</p>
+
+<h2>4. Cookies & Tracking</h2>
+<p>
+We may use basic cookies or analytics tools to understand usage and improve user experience.
+These tools do not collect personally identifiable information.
+</p>
+
+<h2>5. Data Security</h2>
+<p>
+We take reasonable measures to protect your information.
+However, no online system is 100% secure.
+</p>
+
+<h2>6. Third-Party Tools</h2>
+<p>
+We may use hosting platforms, email services, form tools, or automation systems.
+Each third-party service follows its own privacy policies.
+</p>
+
+<h2>7. Your Rights</h2>
+<p>
+You may request access, correction, or deletion of your data at any time
+by contacting us directly.
+</p>
+
+<h2>8. Policy Updates</h2>
+<p>
+This Privacy Policy may be updated occasionally.
+Changes will be reflected on this page with an updated date.
+</p>
+
+<h2>9. Contact Information</h2>
+<p>
+Email: kannectwithsam@gmail.com<br>
+Brand: ANTI9five
+</p>
+<p style="margin-top: 24px;">
+  <a href="#terms">⬆ Back to Terms & Conditions</a>
+</p>
+
+    <div class="divider"></div>
+<p class="acceptance">
+By continuing communication, making payment, or proceeding with ANTI9five services,
+the client acknowledges and agrees to both the Terms & Conditions
+and the Privacy Policy.
+</p>
+
+
+<div class="acceptance-box" id="acceptanceBox">
+  <label class="checkbox-wrap">
+    <input type="checkbox" id="acceptTerms" class="custom-checkbox">
+    <span class="checkmark"></span>
+    I agree to the Terms & Conditions and Privacy Policy.
+  </label>
+</div>
+
+
+
+
+    <!-- CONTENT SAME AS YOUR VERSION (unchanged) -->
+<div class="pdf-download">
+  <button id="pdfBtn" onclick="downloadPDF()" disabled>
+    ⬇️ Download as PDF
+  </button>
+</div>
+
+
+    <p class="footer">
+      <strong>© 2026 Anti9five</strong> — All rights reserved.
+    </p>
+
+  </div>
+  
+
+  <script>
+    function downloadPDF() {
+      const originalTitle = document.title;
+      document.title = "ANTI9five-Terms-2026";
+      window.print();
+      document.title = originalTitle;
+    }
+
+    const acceptBox = document.getElementById("acceptTerms");
+  const pdfBtn = document.getElementById("pdfBtn");
+
+  acceptBox.addEventListener("change", () => {
+    pdfBtn.disabled = !acceptBox.checked;
+  });
+
+    const toggle = document.getElementById("darkToggle");
+    const label = document.getElementById("themeLabel");
+
+    function syncThemeUI() {
+      const isDark = document.body.classList.contains("dark");
+      toggle.checked = isDark;
+      label.textContent = isDark ? "Light mode" : "Dark mode";
+    }
+
+    syncThemeUI();
+
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark", toggle.checked);
+      label.textContent = toggle.checked ? "Light mode" : "Dark mode";
+    });
+    // Always load page at top (Terms) on refresh
+window.addEventListener("load", () => {
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname);
+    window.scrollTo(0, 0);
+  }
+});
+
+  </script>
+
+</body>
+</html>
